@@ -21,7 +21,7 @@ require 'usps/service'
 
 module USPS
   class Verify < USPS::Base
-    def verify(line_1:, line_2: "", city:, state:, zip5: "", zip4: "")
+    def address(line_1:, line_2: "", city:, state:, zip5: "", zip4: "")
       data = Nokogiri::XML::Builder.new do |xml|
         addr = xml.AddressValidateRequest {
           xml.Address {

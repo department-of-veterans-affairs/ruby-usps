@@ -5,4 +5,4 @@
 # worldwide through the CC0 1.0 Universal public domain dedication.
 
 require "usps/service"
-require "usps/verify"
+require "usps/api"
