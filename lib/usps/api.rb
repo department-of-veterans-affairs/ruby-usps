@@ -23,4 +23,3 @@ module USPS
     end
   end
 end
-

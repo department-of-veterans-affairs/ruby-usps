@@ -4,8 +4,8 @@
 # Additionally, we waive copyright and related rights in the work
 # worldwide through the CC0 1.0 Universal public domain dedication.
 #
-require 'usps/service'
 
+require "usps/service"
 require "nokogiri"
 
 module USPS
@@ -22,12 +22,10 @@ module USPS
             xml.Zip4 zip4
           }
         }
-        addr['USERID'] = @user_id
+        addr["USERID"] = @user_id
         addr
       end
-
-      self.query data
+      query data
     end
   end
 end
-
