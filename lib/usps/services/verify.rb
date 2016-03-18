@@ -3,21 +3,10 @@
 #
 # Additionally, we waive copyright and related rights in the work
 # worldwide through the CC0 1.0 Universal public domain dedication.
+#
+require 'usps/service'
 
 require "nokogiri"
-
-# <AddressValidateRequest USERID="xxxxxxxxxxxx">
-#     <Address>
-#         <Address1></Address1> 
-#         <Address2>6406 Ivy Lane</Address2> 
-#         <City>Greenbelt</City> 
-#         <State>MD</State> 
-#         <Zip5></Zip5> 
-#         <Zip4></Zip4> 
-#     </Address> 
-# </AddressValidateRequest>
-
-require 'usps/service'
 
 module USPS
   class Verify < USPS::Base
