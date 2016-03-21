@@ -16,6 +16,10 @@ module USPS
     end
 
     def self.service_name
+      name.split("::").last.downcase
+    end
+
+    def self.api_name
       name.split("::").last
     end
 

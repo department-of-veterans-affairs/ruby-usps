@@ -10,16 +10,16 @@ require "nokogiri"
 
 module USPS
   class Verify < USPS::Base
-    def address(line_1:, line_2: "", city:, state:, zip5: "", zip4: "")
+    def address(address)
       data = Nokogiri::XML::Builder.new do |xml|
         addr = xml.AddressValidateRequest {
           xml.Address {
-            xml.Address1 line_1
-            xml.Address2 line_2
-            xml.City city
-            xml.State state
-            xml.Zip5 zip5
-            xml.Zip4 zip4
+            xml.Address1 address.line_1
+            xml.Address2 address.line_2
+            xml.City address.city
+            xml.State address.state
+            xml.Zip5 address.zip5
+            xml.Zip4 address.zip4
           }
         }
         addr["USERID"] = @user_id

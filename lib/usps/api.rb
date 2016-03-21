@@ -5,6 +5,7 @@
 # worldwide through the CC0 1.0 Universal public domain dedication.
 
 require "usps/services/verify"
+require "usps/services/track"
 
 module USPS
   class API
@@ -17,7 +18,7 @@ module USPS
     end
 
     USPS::API.all.each do |service|
-      define_method(service.service_name.downcase) do
+      define_method(service.service_name) do
         service.new @config
       end
     end
