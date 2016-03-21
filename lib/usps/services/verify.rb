@@ -25,7 +25,21 @@ module USPS
         addr["USERID"] = @user_id
         addr
       end
-      query(data)["AddressValidateResponse"]
+      create_address(query(data)["AddressValidateResponse"])
+    end
+
+    private
+
+    def create_address(data)
+      root = data["Address"]
+      USPS::Address.new(
+        line_1: root["Address1"],
+        line_2: root["Address2"],
+        city: root["City"],
+        state: root["State"],
+        zip5: root["Zip5"],
+        zip4: root["Zip4"]
+      )
     end
   end
 end
