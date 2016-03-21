@@ -6,6 +6,9 @@
 
 module USPS
   class Address
+    class NoZipError < RuntimeError
+    end
+
     attr_accessor :name, :firm, :line_1, :line_2, :city, :state, :zip5, :zip4
 
     def initialize(
@@ -22,6 +25,20 @@ module USPS
       @state = state
       @zip5 = zip5
       @zip4 = zip4
+    end
+
+    def mailing(mailer_id:, serial_number:)
+      USPS::Mailing.new(
+        mailer_id: mailer_id,
+        serial_number: serial_number,
+        address: self
+      )
+    end
+
+    def routing_code
+      raise NoZipError.new("No Zip-5 set") unless @zip5 != ""
+      return @zip5 unless @zip4 != ""
+      @zip5 + @zip4
     end
   end
 end

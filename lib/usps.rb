@@ -7,3 +7,4 @@
 require "usps/address"
 require "usps/service"
 require "usps/api"
+require "usps/mailing"
