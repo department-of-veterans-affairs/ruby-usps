@@ -25,7 +25,7 @@ module USPS
 
     def query(data)
       uri = URI.parse("https://secure.shippingapis.com/ShippingAPI.dll")
-      params = { API: self.class.service_name, XML: data.to_xml }
+      params = { API: self.class.api_name, XML: data.to_xml }
       uri.query = URI.encode_www_form(params)
       req = Net::HTTP::Get.new(uri.to_s)
       res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) { |http| http.request(req) }

@@ -6,6 +6,7 @@
 
 require "usps/services/verify"
 require "usps/services/track"
+require "usps/services/label"
 
 module USPS
   class API

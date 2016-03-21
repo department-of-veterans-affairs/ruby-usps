@@ -9,16 +9,46 @@ require "usps/service"
 require "nokogiri"
 
 module USPS
-  class Label < USPS::Base
+  class LabelTest < USPS::Base
     def self.api_name
       "DelivConfirmCertifyV4"
     end
 
     def self.service_name
-      "label"
+      "label_test"
     end
 
-    def create
+    def create(to:, from:, weight:, service_type:, image_type: :tif)
+      root = Nokogiri::XML::Document.new
+      body = Nokogiri::XML::Node.new("#{self.class.api_name}.0Request", root)
+      body["USERID"] = @user_id
+      Nokogiri::XML::Builder.with(body) do |xml|
+        xml.Option 1
+        xml.FromName from.name
+        xml.FromFirm from.firm
+        xml.FromAddress1 from.line_1
+        xml.FromAddress2 from.line_2
+        xml.FromCity from.city
+        xml.FromState from.state
+        xml.FromZip5 from.zip5
+        xml.FromZip4 from.zip4
+        xml.ToName to.name
+        xml.ToFirm to.firm
+        xml.ToAddress1 to.line_1
+        xml.ToAddress2 to.line_2
+        xml.ToCity to.city
+        xml.ToState to.state
+        xml.ToZip5 to.zip5
+        xml.ToZip4 to.zip4
+        xml.WeightInOunces weight
+        xml.ServiceType SERVICE_TYPES[service_type]
+        xml.ImageType IMAGE_TYPES[image_type]
+      end
+      root.add_child(body)
+      response = query(root)
+      ret = response["#{self.class.api_name}.0Response"]
+      return ret unless ret.nil?
+      response
     end
 
     # Constants {{{
@@ -118,6 +148,16 @@ module USPS
     SIZES = { regular: "REGULAR", large: "LARGE" }.freeze
 
     # }}}
+  end
+
+  class Label < LabelTest
+    def self.api_name
+      "DeliveryConfirmationV4"
+    end
+
+    def self.service_name
+      "label"
+    end
   end
 end
 

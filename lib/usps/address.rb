@@ -6,9 +6,16 @@
 
 module USPS
   class Address
-    attr_accessor :line_1, :line_2, :city, :state, :zip5, :zip4
+    attr_accessor :name, :firm, :line_1, :line_2, :city, :state, :zip5, :zip4
 
-    def initialize(line_1: "", line_2: "", city: "", state: "", zip5: "", zip4: "")
+    def initialize(
+        name: "", firm: "",
+        line_1: "", line_2: "",
+        city: "", state: "",
+        zip5: "", zip4: ""
+    )
+      @name = name
+      @firm = firm
       @line_1 = line_1
       @line_2 = line_2
       @city = city
