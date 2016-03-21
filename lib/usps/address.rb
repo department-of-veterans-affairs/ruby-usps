@@ -4,7 +4,6 @@
 # Additionally, we waive copyright and related rights in the work
 # worldwide through the CC0 1.0 Universal public domain dedication.
 
-
 module USPS
   class Address
     attr_accessor :line_1, :line_2, :city, :state, :zip5, :zip4
