@@ -36,7 +36,7 @@ module USPS
     end
 
     def routing_code
-      raise NoZipError.new("No Zip-5 set") unless @zip5 != ""
+      raise NoZipError, "No Zip-5 set" unless @zip5 != ""
       return @zip5 unless @zip4 != ""
       @zip5 + @zip4
     end

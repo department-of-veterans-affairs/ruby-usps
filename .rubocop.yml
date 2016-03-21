@@ -28,4 +28,10 @@ Style/BlockDelimiters:
   Enabled: false
 
 Metrics/AbcSize:
-  Max: 30
+  Max: 50
+
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/MethodLength:
+  Max: 50
