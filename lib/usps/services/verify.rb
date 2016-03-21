@@ -25,7 +25,7 @@ module USPS
         addr["USERID"] = @user_id
         addr
       end
-      query data
+      query(data)["AddressValidateResponse"]
     end
   end
 end

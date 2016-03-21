@@ -5,6 +5,8 @@
 # worldwide through the CC0 1.0 Universal public domain dedication.
 
 require "nokogiri"
+require "nori"
+
 require "net/http"
 
 module USPS
@@ -23,7 +25,7 @@ module USPS
       uri.query = URI.encode_www_form(params)
       req = Net::HTTP::Get.new(uri.to_s)
       res = Net::HTTP.start(uri.host, uri.port, use_ssl: true) { |http| http.request(req) }
-      Nokogiri::XML res.body
+      Nori.new(parser: :nokogiri).parse(res.body)
     end
   end
 end
