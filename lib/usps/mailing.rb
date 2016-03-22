@@ -11,11 +11,11 @@ module USPS
     attr_accessor :barcode_id, :service_type, :mailer_id, :serial_number, :address
 
     SERVICE_TYPES = {
-      :first_class => 700,
-      :standard => 702,
-      :periodicals => 704,
-      :bound_printed_matter => 706
-    }
+      first_class: 700,
+      standard: 702,
+      periodicals: 704,
+      bound_printed_matter: 706
+    }.freeze
 
     def initialize(service_type:, mailer_id:, serial_number:, address:)
       @barcode_id = "00"
