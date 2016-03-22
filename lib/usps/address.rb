@@ -36,9 +36,27 @@ module USPS
     end
 
     def routing_code
-      raise NoZipError, "No Zip-5 set" unless @zip5 != ""
-      return @zip5 unless @zip4 != ""
-      @zip5 + @zip4
+      zips.join("")
+    end
+
+    def zip
+      zips.join("-")
+    end
+
+    def to_s
+      buf = ""
+      [@name, @line_1, @line_2, "#{@city}, #{@state}", zip].each {|k|
+          buf << "#{k}\n" unless k == ""
+      }
+      buf
+    end
+
+    private
+
+    def zips
+      return [] unless @zip5 != ""
+      return [@zip5] unless @zip4 != ""
+      [@zip5, @zip4]
     end
   end
 end
