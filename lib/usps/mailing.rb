@@ -10,9 +10,16 @@ module USPS
   class Mailing
     attr_accessor :barcode_id, :service_type, :mailer_id, :serial_number, :address
 
-    def initialize(mailer_id:, serial_number:, address:)
-      @barcode_id = "01"
-      @service_type = "234"
+    SERVICE_TYPES = {
+      :first_class => 700,
+      :standard => 702,
+      :periodicals => 704,
+      :bound_printed_matter => 706
+    }
+
+    def initialize(service_type:, mailer_id:, serial_number:, address:)
+      @barcode_id = "00"
+      @service_type = USPS::Mailing::SERVICE_TYPES[service_type]
       @mailer_id = mailer_id
       @serial_number = serial_number
       @address = address
