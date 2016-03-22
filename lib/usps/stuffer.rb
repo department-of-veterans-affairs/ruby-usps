@@ -1,7 +1,6 @@
 require "usps"
 require "pdf-forms"
 
-
 module USPS
   class Stuffer
     def initialize(original_pdf:, output_pdf:, mailing:)
@@ -11,7 +10,7 @@ module USPS
       @pdf = PdfForms.new("pdftk", data_format: "XFdf")
     end
 
-    def fill!()
+    def fill!
       @pdf.fill_form(@original_pdf, @output_pdf, pdf_values, flatten: true)
     end
 

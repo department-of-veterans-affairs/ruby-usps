@@ -46,7 +46,7 @@ module USPS
     def to_s
       buf = ""
       [@name, @line_1, @line_2, "#{@city}, #{@state}", zip].each {|k|
-          buf << "#{k}\n" unless k == ""
+        buf << "#{k}\n" unless k == ""
       }
       buf
     end
