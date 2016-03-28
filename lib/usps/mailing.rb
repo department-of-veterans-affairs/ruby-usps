@@ -63,11 +63,11 @@ module USPS
       none: 0,
       manual: 1,
 
-      asr1:  0,
-      asr2:  1,
-      csr1:  2,
-      csr2:  3,
-      rsr2:  4,
+      asr1: 0,
+      asr2: 1,
+      csr1: 2,
+      csr2: 3,
+      rsr2: 4,
       trsr2: 5
     }.freeze
 
@@ -100,7 +100,7 @@ module USPS
           [510, 530, 512, 511], # CSR2
           [535, 534, 537, 536], # RSR2
           [543, 538, 545, 544]  # TRSR2
-        ],
+        ]
       ],
       standard: [
         [
