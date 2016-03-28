@@ -14,7 +14,7 @@ module USPS
       mail_class:, mailer_id:, serial_number:, address:,
       address_correction_option: :manual,
       method: :manual,
-      automation: false,
+      automation: true,
       tracking: true
     )
       @barcode_id = "00"
@@ -46,10 +46,10 @@ module USPS
       index += 2 if automation
       index += 1 if tracking
 
-      klass = USPS::Mailing::SERVICE_TYPE_IDS[mail_class]
-      methods = klass[USPS::Mailing::ACS_METHOD[address_correction_option]]
-      flavor = methods[USPS::Mailing::SERVICE_ENDORSEMENT_OPTIONS[method]]
-      flavor[index]
+      groups = USPS::Mailing::SERVICE_TYPE_IDS[mail_class]
+      group = groups[USPS::Mailing::ACS_METHOD[address_correction_option]]
+      entry = group[USPS::Mailing::SERVICE_ENDORSEMENT_OPTIONS[method]]
+      entry[index]
     end
 
     ACS_METHOD = {
